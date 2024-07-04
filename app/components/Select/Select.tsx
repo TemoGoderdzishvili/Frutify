@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Select.module.css";
-const Select = () => {
+export const Select = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.blackBackground}>
@@ -17,4 +17,3 @@ const Select = () => {
     </div>
   );
 };
-export default Select;
