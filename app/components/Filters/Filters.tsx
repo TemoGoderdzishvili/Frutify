@@ -9,7 +9,16 @@ const Filters = () => {
       <div className={styles.title}>Filter</div>
       <div className={styles.chart}>
         <span className={styles.label}>Category</span>
-        <FilterSelect />
+        <FilterSelect values={[
+          {
+            title: 'All',
+            value: 'all'
+          },
+          {
+            title: 'Apple',
+            value: 'apple'
+          }
+        ]}/>
       </div>
       <div className={styles.chart}>
         <span className={styles.label}>Price</span>

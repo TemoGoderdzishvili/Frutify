@@ -3,11 +3,11 @@ import styles from "./FruitCard.module.css";
 import Link from "next/link";
 export interface Fruit {
   id: number;
-  name: string;
+  title: string;
   price: string;
-  color: string;
-  image: string;
+  category: string;
   description: string;
+  image: string;
 }
 type Props = {
   fruit: Fruit;
@@ -28,15 +28,15 @@ const FruitCard = (props: Props) => {
       </div>
       <div className={styles.fruitDescription}>
         <div className={styles.fruitName}>
-          <span className={styles.fruitname}>{props.fruit.name}</span>
-          <span className={styles.fruitColor}>{props.fruit.color} </span>
+          <span className={styles.fruitname}>{props.fruit.title}</span>
+          <span className={styles.fruitColor}>{props.fruit.category} </span>
         </div>
         <div>
-          <span className={styles.fruitPrice}>{props.fruit.price} </span>
+          <span className={styles.fruitPrice}>{`${props.fruit.price}$`} </span>
         </div>
       </div>
       <Link
-        href={`/buynow?name=${props.fruit.name}`}
+        href={`/product?id=${props.fruit.id}`}
         className={styles.fruitBuyNow}
       >
         <span className={styles.buyNowText}>Buy Now</span>

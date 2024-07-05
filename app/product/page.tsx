@@ -1,20 +1,30 @@
 "use client";
-import styles from "./buynow.module.css";
+import styles from "./product.module.css";
 import { fruits } from "../../public/CONSTS/Fruit";
 import { useParams, useSearchParams } from "next/navigation";
 import Button from "../components/Button/Button";
+import { useEffect } from "react";
+import axios from "axios";
+import { useState } from "react";
+import { Fruit } from "../components/FruitCard/FruitCard";
+
 const BuyNow = () => {
   const searchParams = useSearchParams();
-  const name = searchParams.get("name"); // Get the 'name' query parameter
+  const id = searchParams.get("id");
 
-  console.log(name); // Should log 'Goris Apple'
-  const myFruit: any = fruits.filter((fruit) => fruit.name === name);
-  console.log(myFruit);
+  const[product, setProduct] = useState<Fruit>()
+
+  useEffect(()=>{
+    axios.get(`https://fakestoreapi.com/products/${id}`)
+    .then(result => {
+      setProduct(result.data)
+    })
+  },[])
 
   return (
     <div className={styles.mainWrapper}>
       <div className={styles.fruitImage}>
-        <img src={myFruit[0].image} alt="xili" />
+        <img src={product?.image} alt="xili" />
         <div className={styles.iconsWrapper}>
           <div className={styles.iconWrapper}>
             <img src={"/images/pen.svg"} />
@@ -27,12 +37,12 @@ const BuyNow = () => {
       <div className={styles.description}>
         <div className={styles.descriptionWrapper}>
           <div className={styles.nameAndDescription}>
-            <div className={styles.name}>{myFruit[0].name}</div>
+            <div className={styles.name}>{product?.title}</div>
             <div className={styles.descriptionText}>
-              {myFruit[0].description}
+              {product?.description}
             </div>
           </div>
-          <div className={styles.price}>{myFruit[0].price}</div>
+          <div className={styles.price}>{product?.price}</div>
         </div>
         <div className={styles.button}>
           <Button text="Buy Now" />

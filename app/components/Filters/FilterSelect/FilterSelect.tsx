@@ -1,13 +1,23 @@
 import styles from "./FiltersSelect.module.css";
-const FilterSelect = () => {
+
+interface Value {
+  title: string
+  value: string
+}
+
+interface Props {
+  onChange?: () => void
+  values: Value[]  
+}
+
+const FilterSelect = (props: Props) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.selectWrapper}>
         <select className={styles.customSelect}>
-          <option value="price-high-to-low">All</option>
-          <option value="price-low-to-high">Green</option>
-          <option value="newest-first">Orange</option>
-          <option value="oldest-first">Red</option>
+          {
+            props.values?.map(item => <option value={item.value}>{item.title}</option>)
+          }
         </select>
       </div>
     </div>
