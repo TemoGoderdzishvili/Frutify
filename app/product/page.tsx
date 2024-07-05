@@ -42,7 +42,7 @@ const BuyNow = () => {
               {product?.description}
             </div>
           </div>
-          <div className={styles.price}>{product?.price}</div>
+          <div className={styles.price}>{`${product?.price}$`}</div>
         </div>
         <div className={styles.button}>
           <Button text="Buy Now" />
